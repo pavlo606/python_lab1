@@ -4,64 +4,24 @@ class Insect:
     """
     Insect
     """
-    __name: str
-    __number_of_legs: int
-    __has_wings: bool
-    __is_dangerous: bool
-    __is_sleeping: bool
+    __instance = None
 
-    def __init__(self, name: str, number_of_legs: int, \
-                 has_wings: bool, is_dangerous: bool, is_sleeping: bool) -> None:
-        self.__name = name
-        self.__number_of_legs = number_of_legs
-        self.__has_wings = has_wings
-        self.__is_dangerous = is_dangerous
-        self.__is_sleeping = is_sleeping
+    def __init__(self, name: str, number_of_legs: int, has_wings: bool = False, \
+                 is_dangerous: bool = False, is_sleeping: bool = False) -> None:
+        self.name = name
+        self.number_of_legs = number_of_legs
+        self.has_wings = has_wings
+        self.is_dangerous = is_dangerous
+        self.is_sleeping = is_sleeping
 
-    @property
-    def name(self) -> str:
-        """Getter, Setter"""
-        return self.__name
-
-    @name.setter
-    def name(self, name) -> None:
-        self.__name = name
-
-    @property
-    def number_of_legs(self) -> int:
-        """Getter, Setter"""
-        return self.__number_of_legs
-
-    @number_of_legs.setter
-    def number_of_legs(self, number_of_legs) -> None:
-        self.__number_of_legs = number_of_legs
-
-    @property
-    def has_wings(self) -> int:
-        """Getter, Setter"""
-        return self.__has_wings
-
-    @has_wings.setter
-    def has_wings(self, has_wings) -> None:
-        self.__has_wings = has_wings
-
-    @property
-    def is_dangerous(self) -> bool:
-        """Getter, Setter"""
-        return self.__is_dangerous
-
-    @is_dangerous.setter
-    def is_dangerous(self, is_dangerous) -> None:
-        self.__is_dangerous = is_dangerous
-
-    @property
-    def is_sleeping(self) -> bool:
-        """Getter, Setter"""
-        return self.__is_sleeping
-
-    @is_sleeping.setter
-    def is_sleeping(self, is_sleeping) -> None:
-        self.__is_sleeping = is_sleeping
+    @staticmethod
+    def get_instance():
+        """
+        Returns Instance of this class
+        """
+        if Insect.__instance is None:
+            Insect.__instance = Insect("", 0)
+        return Insect.__instance
 
     def is_poisonous(self) -> bool:
         """
@@ -89,4 +49,3 @@ class Insect:
         return f"{self.__class__.__name__}(name: {self.name}, " \
                 + f"number of legs: {self.number_of_legs}, has wings: {self.has_wings}, " \
                 + f"is dangerous: {self.is_dangerous}, is sleeping: {self.is_sleeping})"
-    
