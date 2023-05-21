@@ -1,8 +1,8 @@
-"""Hornet"""
+"""Ant"""
 from Insects.models.insect import Insect
 
-class Hornet(Insect):
-    """Hornet"""
+class Ant(Insect):
+    """Ant"""
 
     def __init__(self, name: str, species: str, number_of_legs: int, has_wings: bool = True, \
                  is_dangerous: bool = True):

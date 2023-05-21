@@ -25,8 +25,7 @@ class Insect(ABC):
         """
 
     def __repr__(self) -> str:
-        attributes = self.__dict__
-        return f"{attributes}"
+        return f"{self.__dict__}"
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__}\nname: {self.name}, \n" \
