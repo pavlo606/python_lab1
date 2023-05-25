@@ -6,7 +6,7 @@ class Insect(ABC):
     Insect
     """
     def __init__(self, name: str, number_of_legs: int, has_wings: bool = False, \
-                 is_dangerous: bool = False) -> None:
+                 is_dangerous: bool = False):
         self.name = name
         self.number_of_legs = number_of_legs
         self.has_wings = has_wings
@@ -15,17 +15,19 @@ class Insect(ABC):
     @abstractmethod
     def can_inject_poison(self) -> bool:
         """
-        Return if insect is poisonous
+        Return true if insect is poisonous
         """
 
     @abstractmethod
     def survive_over_winter(self) -> bool:
         """
-        Return if insect can survive over winter
+        Return true if insect can survive over winter
         """
 
-    def __repr__(self) -> str:
-        return f"{self.__dict__}"
+    def get_attributes_by_type(self, val_type) -> dict:
+        """Return dictionary of attributes that have this val_type"""
+        attributes = self.__dict__
+        return {key: val for key, val in attributes.items() if isinstance(val, val_type)}
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__}\nname: {self.name}, \n" \
