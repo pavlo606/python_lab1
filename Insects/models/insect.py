@@ -5,12 +5,14 @@ class Insect(ABC):
     """
     Insect
     """
-    def __init__(self, name: str, number_of_legs: int, has_wings: bool = False, \
-                 is_dangerous: bool = False):
+    def __init__(self, name: str, number_of_legs: int, favourite_food_set: set[str],
+                 has_wings: bool = False, is_dangerous: bool = False):
         self.name = name
         self.number_of_legs = number_of_legs
         self.has_wings = has_wings
         self.is_dangerous = is_dangerous
+        self.favourite_food_set = favourite_food_set
+        self.current_food = 0
 
     @abstractmethod
     def can_inject_poison(self) -> bool:
@@ -29,7 +31,21 @@ class Insect(ABC):
         attributes = self.__dict__
         return {key: val for key, val in attributes.items() if isinstance(val, val_type)}
 
+    def __repr__(self):
+        return f"{self.__dict__}"
+
     def __str__(self) -> str:
         return f"{self.__class__.__name__}\nname: {self.name}, \n" \
                 + f"number of legs: {self.number_of_legs}, \nhas wings: {self.has_wings}, \n" \
                 + f"is dangerous: {self.is_dangerous}"
+
+    def __iter__(self):
+        self.current_food = 0
+        return self
+
+    def __next__(self):
+        if self.current_food < len(self.favourite_food_set):
+            idx = self.current_food
+            self.current_food += 1
+            return list(self.favourite_food_set)[idx]
+        raise StopIteration

@@ -6,7 +6,7 @@ class Mosquito(Insect):
 
     def __init__(self, name: str, number_of_legs: int, has_wings: bool = True, \
                  is_dangerous: bool = False, is_vector_of_disease: bool = False):
-        super().__init__(name, number_of_legs, has_wings, is_dangerous)
+        super().__init__(name, number_of_legs, {"blood", "nectar"}, has_wings, is_dangerous)
         self.is_vector_of_disease = is_vector_of_disease
 
     def can_inject_poison(self) -> bool:

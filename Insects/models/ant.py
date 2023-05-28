@@ -6,7 +6,7 @@ class Ant(Insect):
 
     def __init__(self, name: str, species: str, number_of_legs: int, has_wings: bool = True, \
                  is_dangerous: bool = True):
-        super().__init__(name, number_of_legs, has_wings, is_dangerous)
+        super().__init__(name, number_of_legs, {"plant juice", "fall of aphids", "other insects"}, has_wings, is_dangerous)
         self.species = species
 
     def can_inject_poison(self) -> bool:
