@@ -6,7 +6,7 @@ class Butterfly(Insect):
 
     def __init__(self, name: str, color: str, number_of_legs: int, has_wings: bool = True, \
                  is_dangerous: bool = True):
-        super().__init__(name, number_of_legs, has_wings, is_dangerous)
+        super().__init__(name, number_of_legs, {"flower", "nectar"}, has_wings, is_dangerous)
         self.color = color
 
     def can_inject_poison(self) -> bool:
