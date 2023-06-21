@@ -1,16 +1,20 @@
 """Insect class"""
 from abc import ABC, abstractmethod
 
+from Insects.exceptions_templates.insect_sleeping_exception import InsectSleepingException
+from Insects.decorators.write_exc import write_exc
+
 class Insect(ABC):
     """
     Insect
     """
     def __init__(self, name: str, number_of_legs: int, favourite_food_set: set[str],
-                 has_wings: bool = False, is_dangerous: bool = False):
+                 has_wings: bool = False, is_dangerous: bool = False, is_sleeping: bool = False):
         self.name = name
         self.number_of_legs = number_of_legs
         self.has_wings = has_wings
         self.is_dangerous = is_dangerous
+        self.is_sleeping = is_sleeping
         self.favourite_food_set = favourite_food_set
         self.current_food = 0
 
@@ -25,6 +29,26 @@ class Insect(ABC):
         """
         Return true if insect can survive over winter
         """
+
+    @write_exc
+    def hibernate(self):
+        """
+        Make insect go sleeping
+        """
+        if self.is_sleeping is False:
+            self.is_sleeping = True
+        else:
+            raise InsectSleepingException("Insect has already hibernated")
+
+    @write_exc
+    def wake_up(self):
+        """
+        Make insect wake up
+        """
+        if self.is_sleeping is True:
+            self.is_sleeping = False
+        else:
+            raise InsectSleepingException("Insect has already woke up")
 
     def get_attributes_by_type(self, val_type) -> dict:
         """Return dictionary of attributes that have this val_type"""
